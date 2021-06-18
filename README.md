@@ -16,6 +16,8 @@ Luo sanoja käyttämällä annettuja kirjaimia.
 -Jokaisessa sanassa täytyy olla annettu pakollinen kirjain
 -Kirjaimia voi käyttää useamman kerran
 
+###Suorita spellingbee.py aloittaaksesi pelin
+
 ## Tietoa pelistä
 
 Pelissä ei ole vielä varsinaista voittoehtoa eikä vaikeusasteita. Luon nämä myöhempänä ajankohtana.

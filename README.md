@@ -13,7 +13,9 @@ Licensed under GNU LGPL (Lesser General Public License), EUPL v.1.1 (European Un
 Luo sanoja käyttämällä annettuja kirjaimia.
 
 -Jokaisen sanan täytyy olla vähintään 4 kirjainta pitkä
+
 -Jokaisessa sanassa täytyy olla annettu pakollinen kirjain
+
 -Kirjaimia voi käyttää useamman kerran
 
 ### Suorita spellingbee.py aloittaaksesi pelin

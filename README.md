@@ -16,7 +16,7 @@ Luo sanoja käyttämällä annettuja kirjaimia.
 -Jokaisessa sanassa täytyy olla annettu pakollinen kirjain
 -Kirjaimia voi käyttää useamman kerran
 
-###Suorita spellingbee.py aloittaaksesi pelin
+### Suorita spellingbee.py aloittaaksesi pelin
 
 ## Tietoa pelistä
 
@@ -31,5 +31,7 @@ Voit huijata ja paljastaa kaikki sanat kirjoittamalla "enable_cheats" (ilman lai
 Kirjaingeneraattori luo kirjainyhdistelmiä, joita voi käyttää pelissä. Tämän tarkoituksena on pienentää latausaikoja. Aion jossain vaiheessa yhdistää generaattorin peliin siten, että latausajat lyhenisivät dynaamisesti.
 
 ## Asennus
+
+Suorita spellingbee.py aloittaaksesi pelin
 
 Tarkemmat ohjeet tulossa myöhemmin. Jos kaipaat apua, niin lähetä minulle viesti, jotta voin auttaa sinua henkilökohtaisesti.

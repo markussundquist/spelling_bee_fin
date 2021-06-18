@@ -4,6 +4,7 @@ Suomalainen versio New York Timesin "Spelling Bee" -pelistä.
 A Finnish version of the Spelling Bee game provided by the New York Times.
 
 Original: https://www.nytimes.com/puzzles/spelling-bee
+
 Words acquired from: https://github.com/hugovk/everyfinnishword
 
 Licensed under GNU LGPL (Lesser General Public License), EUPL v.1.1 (European Union Public Licence) and CC Attribution 3.0 Unported.
@@ -12,11 +13,11 @@ Licensed under GNU LGPL (Lesser General Public License), EUPL v.1.1 (European Un
 
 Luo sanoja käyttämällä annettuja kirjaimia.
 
--Jokaisen sanan täytyy olla vähintään 4 kirjainta pitkä
+- Jokaisen sanan täytyy olla vähintään 4 kirjainta pitkä
 
--Jokaisessa sanassa täytyy olla annettu pakollinen kirjain
+- Jokaisessa sanassa täytyy olla annettu pakollinen kirjain
 
--Kirjaimia voi käyttää useamman kerran
+- Kirjaimia voi käyttää useamman kerran
 
 ### Suorita spellingbee.py aloittaaksesi pelin
 

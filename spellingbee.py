@@ -7,7 +7,7 @@ accepted_words = ["kyllä", "jeba", "jep", "kyllä", "yes", "y", "k", "kyl"]
 accepted_exits = ['e', 'ei', 'en', 'en mä', 'n', 'no']
 alphabet = [x for x in 'abcdefghijklmnopqrstuvwxyzäö']
 correct_words = []
-score, good_start, moving_up, good, solid, nice, great, amazing, genius, queen_bee = 0, 0, 0, 0, 0, 0, 0 ,0 , 0, 0
+score = 0
 
 def select_letters():
 
@@ -89,25 +89,13 @@ def max_score(wordlist):
 
 def write_letters_to_file(game_letters): #lisää kirjaimet tekstitiedostoon, jotta latausajat vähentyisivät
     append_file = open("kirjainyhdistelmät.txt", "a+")
-    game_letters_joined = ''.join(game_letters)
+    game_letters_sorted = sorted(game_letters[1:])      #Nämä järjestävät kirjaimet aakkosjärjestykseen pakollista kirjainta lukuunottamatta
+    game_letters_sorted.insert(0, game_letters[0])      #tarkoituksena on vähentää kahdesti esiintyviä numeroita
+    game_letters_joined = ''.join(game_letters_sorted)
     game_letters_joined = game_letters_joined + "\n"
     if game_letters_joined not in append_file:
         append_file.write(game_letters_joined)
     append_file.close()
-
-def create_rankings(scoring): #Luo sijoittumiselle eri nimet
-    if scoring % 2 != 0:
-        queen_bee = (scoring-1)
-    else:
-        queen_bee = scoring
-    return (queen_bee/50), (queen_bee*0.075), (queen_bee*0.1),  (queen_bee*0.2), (queen_bee*0.3), (queen_bee*0.4), (queen_bee*0.5), (queen_bee*0.75), queen_bee  
-
-    
-
-
-
-
-
 
 
 
@@ -125,7 +113,6 @@ while query == True:
         print("En ymmärtänyt vastausta. Vastaa muodossa kyllä tai ei.")
 
 #Kerää pelilaudan
-print("Kerätään sanoja. Tässä saattaa kestää hetki!")
 i = 0 ## Tämän tarkoituksena on vähentää latausaikoja. Jos i ylittää 200:n arvon, peli valitsee kirjaimet valmiista listasta.
 while playing == True:
 
@@ -133,7 +120,8 @@ while playing == True:
     while counter == True:
 
         game_letters = select_letters()
-        print(f'{i}/100%')
+        print("\n"*200)
+        print(f'{i}/100% Kerätään sanoja. Tässä saattaa kestää hetki!')
         mandatory_letter = set_mandatory(game_letters)
         game_words = create_words(game_letters, mandatory_letter)
         i += 1
@@ -147,10 +135,11 @@ while playing == True:
             game_letters, mandatory_letter, counter = terrible_optimizer()
             game_words = create_words(game_letters, mandatory_letter)
             print(f'Maksimipistemäärä on {max_score(game_words)}p.')
-
+    
 
 ##Pelin alku
     guess = input("Kirjoita tähän vastauksesi: ").lower()
+    print("\n"*200)
 
     if guess == "exit_game":
         break
@@ -173,7 +162,8 @@ while playing == True:
         print(f"Vastaus \"{guess}\" on oikein. Vastauksesi oli {scoring(guess)+pangram_check(game_letters, guess)}:n pisteen arvoinen, jolloin sinulla on yhteensä {score}/{max_score(game_words)} pistettä!")
         correct_words.append(guess)
     else:
-        print(f"Vastaus {guess} on väärin")
+        print(f"Vastaus \"{guess}\" on väärin")
+
 
     print(f'\nKirjaimesi ovat \'{game_letters}\' ja näistä pakollinen kirjain on {mandatory_letter}.')
 

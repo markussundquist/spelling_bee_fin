@@ -29,7 +29,7 @@ def create_words(letters, mandatory):
 
 
 
-    with open("kaikkisanat.txt", "r") as file:
+    with open("kaikkisanatkarsittu.txt", "r") as file:
         for line in file:
             wordlist.append(str(line).lower()[:-1])
 
@@ -67,7 +67,9 @@ while Generator == True:
     game_words = create_words(game_letters, mandatory_letter)
 
     if len(game_words) > 12 and ispangram(game_letters, game_words) > 0 :
-        game_letters_joined = ''.join(game_letters)
+        game_letters_sorted = sorted(game_letters[1:])      #Nämä järjestävät kirjaimet aakkosjärjestykseen pakollista kirjainta lukuunottamatta
+        game_letters_sorted.insert(0, game_letters[0])      #tarkoituksena on vähentää kahdesti esiintyviä numeroita
+        game_letters_joined = ''.join(game_letters_sorted)
         game_letters_joined = game_letters_joined + "\n"
         if game_letters_joined not in append_file:
             print(f'Kirjaimet \'{game_letters}\', joista pakollinen {mandatory_letter} merkattu muistioon.')

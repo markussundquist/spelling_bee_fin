@@ -2,8 +2,6 @@ from random import shuffle
 
 Generator = False
 
-accepted_words = ["kyllä", "jeba", "jep", "kyllä", "yes", "y", "k", "kyl"]
-accepted_exits = ['e', 'ei', 'en', 'en mä', 'n', 'no']
 alphabet = [x for x in 'abcdefghijklmnopqrstuvwxyzäö']
 correct_words = []
 append_file = open("kirjainyhdistelmät.txt", "a+")
@@ -78,5 +76,3 @@ while Generator == True:
     else:
         i += 1
         print(f"{i} kierrosta tehty.")
-#            append_file.close()
-#            append_file = open("kirjainyhdistelmät.txt", "a+")

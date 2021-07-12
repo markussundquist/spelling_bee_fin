@@ -1,105 +1,19 @@
-from random import shuffle, choice
+from TidyPackage.wordcreate import select_letters, set_mandatory, create_words
+from TidyPackage.pangram import ispangram, pangram_check
+from TidyPackage.scoring import scoring, max_score
+from TidyPackage.filewrite import terrible_optimizer, write_letters_to_file, loading_cut_off
+
 
 playing = False
 counter = True
 query = True
 accepted_words = ["kyllä", "jeba", "jep", "kyllä", "yes", "y", "k", "kyl"]
 accepted_exits = ['e', 'ei', 'en', 'en mä', 'n', 'no']
-alphabet = [x for x in 'abcdefghijklmnopqrstuvwxyzäö']
 correct_words = []
 score = 0
 
-def select_letters():
-
-    shuffle(alphabet)
-    return alphabet[:7]
 
 
-def set_mandatory(word): ##Selects the first letter as mandatory from the 7 letters
-
-    return word[0]
-
-def create_words(letters, mandatory):
-
-    #kerää sanat osoitteesta https://github.com/hugovk/everyfinnishword
-    wordlist = []
-    accepted = []
-    invalid_letters = [x for x in alphabet if x not in letters]
-    invalid_markings = "-"
-    invalid_letters.append(invalid_markings)
-
-
-
-    with open("kaikkisanat.txt", "r") as file:
-        for line in file:
-            wordlist.append(str(line).lower()[:-1])
-
-    for word in wordlist:
-        if mandatory in word:
-            if len(word) > 3:
-                if any(x in invalid_letters for x in word) == False: #Karsii sanat, jotka sisältävät muita kuin hyväksyttyjä kirjaimia
-                    accepted.append(word)
-    
-    return accepted
-
-def ispangram(letters, game_words):
-
-    pangram_count = 0
-    if len(game_words) > 1:
-        for word in game_words:
-            if set(letters) - set(word) == set(): ##jos sana käyttää kaikki kirjaimet, tuloksena on tyhjä set(). Tarkastaa pangramit pelilautaa rakentaessa.
-                pangram_count += 1
-    return pangram_count
-
-def pangram_check(letters, guess):
-    if set(letters) - set(guess) == set(): ##Tämä tarkistaa vastauksen pangramin varalta
-        return 7
-    else:
-        return 0
-
-def terrible_optimizer():
-    #Leikkaa latausaikoja (karusti) valitsemalla kirjaimet valmiista listasta. Bonuksena on se, että latausajat lyhenevät, mitä enemmän pelia pelaa (lisää myöhemmin).
-    linefile = open("kirjainyhdistelmät.txt", "r")
-    allText= linefile.read()
-    game_lines = list(map(str, allText.split()))
-    game_letters = choice(game_lines)
-    mandatory_letter = game_letters[0]
-    print(f'Kirjaimesi ovat \'{game_letters}\' ja näistä pakollinen kirjain on {mandatory_letter}.')
-    return game_letters, mandatory_letter, False
-
-def scoring(guess):
-    #4 kirjainta = 1p
-    #5 kirjainta = 4p
-    #6 kirjainta = 6p
-    #7 kirjainta = 7p
-    #8 kirjaimen pangram = 15p
-    #9 kirjaimen pangram = 16p eli pangram 7p bonus
-    if len(guess) == 4:
-        return 1
-    elif len(guess) == 5:
-        return 4
-    else:
-        return len(guess)
-
-def max_score(wordlist):
-    maximum = 0
-    for word in wordlist:
-        maximum += scoring(word)
-    return maximum
-
-def write_letters_to_file(game_letters): #lisää kirjaimet tekstitiedostoon, jotta latausajat vähentyisivät
-    append_file = open("kirjainyhdistelmät.txt", "a+")
-    game_letters_sorted = sorted(game_letters[1:])      #Nämä järjestävät kirjaimet aakkosjärjestykseen pakollista kirjainta lukuunottamatta
-    game_letters_sorted.insert(0, game_letters[0])      #tarkoituksena on vähentää kahdesti esiintyviä numeroita
-    game_letters_joined = ''.join(game_letters_sorted)
-    game_letters_joined = game_letters_joined + "\n"
-    if game_letters_joined not in append_file:
-        append_file.write(game_letters_joined)
-    append_file.close()
-
-
-
-########################################################################################################
 while query == True:
 
     start_game = input("Tervetuloa pelaamaan \"spelling bee\" -peliä! Haluatko aloittaa pelin? ")
@@ -114,6 +28,7 @@ while query == True:
 
 #Kerää pelilaudan
 i = 0 ## Tämän tarkoituksena on vähentää latausaikoja. Jos i ylittää 200:n arvon, peli valitsee kirjaimet valmiista listasta.
+cut_off = loading_cut_off()
 while playing == True:
 
     #valitsee aakkosista satunnaisesti 7 kirjainta ja niistä pakollisen kirjaimen
@@ -131,7 +46,7 @@ while playing == True:
             write_letters_to_file(game_letters)
             counter = False
 
-        elif i > 100: #latausaika liian suuri
+        elif i > (200 - cut_off): #latausaika liian suuri
             game_letters, mandatory_letter, counter = terrible_optimizer()
             game_words = create_words(game_letters, mandatory_letter)
             print(f'Maksimipistemäärä on {max_score(game_words)}p.')

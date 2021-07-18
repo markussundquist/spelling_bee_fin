@@ -29,6 +29,8 @@ Voit lopettaa pelin kirjoittamalla "exit_game" (ilman lainausmerkkejä).
 Voit katsoa arvaamiasi sanoja kirjoittamalla "arvatut_sanat" (ilman lainausmerkkejä).
 Voit huijata ja paljastaa kaikki sanat kirjoittamalla "enable_cheats" (ilman lainausmerkkejä).
 
+Huom. ohjelma kirjoittaa ylös sopivia kirjainyhdistelmiä, mitä enemmän peliä pelaa. Tämän tarkoituksena on dynaamisesti vähentää latausaikoja (ei vielä implementoitu).
+
 ## Asennus
 
 Suorita spellingbee.py aloittaaksesi pelin

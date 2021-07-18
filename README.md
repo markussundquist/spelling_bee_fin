@@ -29,10 +29,6 @@ Voit lopettaa pelin kirjoittamalla "exit_game" (ilman lainausmerkkejä).
 Voit katsoa arvaamiasi sanoja kirjoittamalla "arvatut_sanat" (ilman lainausmerkkejä).
 Voit huijata ja paljastaa kaikki sanat kirjoittamalla "enable_cheats" (ilman lainausmerkkejä).
 
-## Kirjaingeneraattorista
-
-Kirjaingeneraattori luo kirjainyhdistelmiä, joita voi käyttää pelissä. Tämän tarkoituksena on pienentää latausaikoja. Aion jossain vaiheessa yhdistää generaattorin peliin siten, että latausajat lyhenisivät dynaamisesti.
-
 ## Asennus
 
 Suorita spellingbee.py aloittaaksesi pelin

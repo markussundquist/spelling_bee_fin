@@ -23,7 +23,7 @@ Luo sanoja käyttämällä annettuja kirjaimia.
 
 ## Tietoa pelistä
 
-Pelissä ei ole vielä varsinaista voittoehtoa eikä vaikeusasteita. Luon nämä myöhempänä ajankohtana.
+Pelissä ei ole vielä varsinaista voittoehtoa eikä vaikeusasteita.
 
 Voit lopettaa pelin kirjoittamalla "exit_game" (ilman lainausmerkkejä). 
 Voit katsoa arvaamiasi sanoja kirjoittamalla "arvatut_sanat" (ilman lainausmerkkejä).
@@ -36,3 +36,10 @@ Huom. ohjelma kirjoittaa ylös sopivia kirjainyhdistelmiä, mitä enemmän peli�
 Suorita spellingbee.py aloittaaksesi pelin
 
 Tarkemmat ohjeet tulossa myöhemmin. Jos kaipaat apua, niin lähetä minulle viesti, jotta voin auttaa sinua henkilökohtaisesti.
+
+## Tulevaisuuden suunnitelmat
+
+- Lisää voittoehdot
+- Implementoi dynaamisesti tehostuvat latausajat
+- Lisää vaikeusasteet
+- Lisää mahdollisuus karsia yhdyssanat
